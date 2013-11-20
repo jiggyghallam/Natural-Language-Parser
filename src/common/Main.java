@@ -17,12 +17,19 @@ public class Main {
 		Parser p = new Parser("models/englishPCFG.ser.gz", new String[]{"-maxLength", "80", "-retainTmpSubcategories"});
 		SentanceProcessor sp = new SentanceProcessor("models/englishPCFG.ser.gz", new String[]{"-outputFormat", "penn,typedDependenciesCollapsed", "-retainTmpSubcategories"});
 		
-		Tree pSent = sp.processSentence("The cat sat on the mat.");
+		//Tree pSent = sp.processSentence("The trophy doesn't fit into the brown suitcase because it's too small.");
+		Tree pSent = sp.processSentence("I poured water from the bottle into the cup until it was full.");
 		
 		//p.parseSentance(pSent);
 		//p.printTree(pSent, "penn,typedDependenciesCollapsed");
+		System.out.println("====================Original Tree==================");
 		String s = p.getTreeDependencies(pSent);
 		System.out.println(s);
+		System.out.println("===================================================");
+		System.out.println();
+		Formaliser f = new Formaliser();
+		System.out.println("====================Root Relations==================");
+		f.relatedToRoot(s);
 	}   
 	
 }
