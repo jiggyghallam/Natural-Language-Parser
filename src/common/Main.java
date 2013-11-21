@@ -18,7 +18,8 @@ public class Main {
 		SentanceProcessor sp = new SentanceProcessor("models/englishPCFG.ser.gz", new String[]{"-outputFormat", "penn,typedDependenciesCollapsed", "-retainTmpSubcategories"});
 		
 		//Tree pSent = sp.processSentence("The trophy doesn't fit into the brown suitcase because it's too small.");
-		Tree pSent = sp.processSentence("I poured water from the bottle into the cup until it was full.");
+		//Tree pSent = sp.processSentence("I poured water from the bottle into the cup until it was full.");
+		Tree pSent = sp.processSentence("I was trying to balance the bottle upside down on the table, but I couldn't do it because it was so top-heavy.");
 		
 		//p.parseSentance(pSent);
 		//p.printTree(pSent, "penn,typedDependenciesCollapsed");
