@@ -1,51 +1,60 @@
 package common;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Formaliser {
 	
-	String[] acceptanceList = {"nsubj", "prep","dobj"};
+	//String[] acceptanceList = {"nsubj", "prep","dobj"};
 	
 	public Formaliser() {
 		
 	}
 
 	
-	public void createFirstOrderSentance(String string) {
-			
+	public void createRule(String rule, ArrayList<Dependency> dependencies, String[] acceptanceList) {
+			ArrayList<Dependency> relatedToRule = new ArrayList<Dependency>();
+			for (Dependency d: dependencies) {
+				if (d.isRelationAccepted(acceptanceList)) {
+					
+				}
+			}
 	}
 	
-	public void relatedToRoot(String string) {
-		Pattern p = Pattern.compile("(?i)(root\\(ROOT-0,*?)(\\s)(.+?)(\\))");
-		Matcher m = p.matcher(string);
-		m.find();
-		String rootLine = m.group();		
-		String rootPattern = "(?i)(root\\(ROOT-0,*?)(\\s)(.+?)(\\))";
-		String updated = string.replaceAll(rootPattern, "$3");
-		rootLine = rootLine.replaceAll(rootPattern, "$3");
 		
-		System.out.println("========================Original Root Relations =======================");
-		p = Pattern.compile("(?i)(.+?)("+rootLine+",*?)(\\s)(.+?)(\\))");
+	public ArrayList<String> getAllDependenciesRelations(String string) {
+		Pattern p;
+		Matcher m;
+		ArrayList<String> relations = new ArrayList<String>();
+		p = Pattern.compile("(?i)(.*?)(\\(.+?)(\\s)(.+?)(\\))");
 		m = p.matcher(string);
 		while(m.find()) {
-			System.out.println("Related to " + rootLine + " " + m.group());
+			relations.add(m.group());
 		}
-		System.out.println("========================Useful Root Relations =======================");
-		for(int i = 0; i < acceptanceList.length; i++) {
-			p = Pattern.compile("(?i)("+ acceptanceList[i] + ".*?)(\\("+rootLine+",*?)(\\s)(.+?)(\\))");
+			
+		
+		return relations;
+		
+	}
+	
+	public ArrayList<String> getDependenciesRelations(String string, String[] depenencies) {
+		Pattern p;
+		Matcher m;
+		ArrayList<String> relations = new ArrayList<String>();
+		for(int i = 0; i < depenencies.length; i++) {
+			p = Pattern.compile("(?i)("+ depenencies[i] + ".*?)(\\(.+?)(\\s)(.+?)(\\))");
 			m = p.matcher(string);
 			while(m.find()) {
-				System.out.println("Related to " + rootLine + " " + m.group());
+				relations.add(m.group());
 			}
 			
 		}
-
 		
-		
-		//System.out.println(rootLine);
-		
-		//System.out.println(updated);
+		return relations;
 		
 	}
+	
+
 }
