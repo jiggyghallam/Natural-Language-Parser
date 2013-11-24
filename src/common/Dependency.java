@@ -33,7 +33,7 @@ public class Dependency {
 	
 	public boolean isRelationAccepted(String [] acceptenceList) {
 		for (String element: acceptenceList){
-			if (element.startsWith(relation))
+			if (relation.startsWith(element))
 				return true;
 		}
 		return false;

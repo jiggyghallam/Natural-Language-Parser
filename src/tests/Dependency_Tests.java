@@ -13,7 +13,10 @@ public class Dependency_Tests {
 	public void Test_isRelationshipAccepted() {
 		Dependency d = new Dependency("nsubj(poured-2, I-1)");
 		assertTrue(d.isRelationAccepted(new String[] {"nsubj", "prep","dobj"}));
-		assertFalse(d.isRelationAccepted(new String[] {"prep","dobj"}));		
+		assertFalse(d.isRelationAccepted(new String[] {"prep","dobj"}));	
+		d = new Dependency("prep_into(poured-2, I-1)");
+		assertTrue(d.isRelationAccepted(new String[] {"nsubj", "prep","dobj"}));
+		assertFalse(d.isRelationAccepted(new String[] {"nsubj","dobj"}));
 	}
 
 	

@@ -2,9 +2,9 @@ package common;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 public class Formaliser {
 	
 	//String[] acceptanceList = {"nsubj", "prep","dobj"};
@@ -14,13 +14,38 @@ public class Formaliser {
 	}
 
 	
-	public void createRule(String rule, ArrayList<Dependency> dependencies, String[] acceptanceList) {
+	public String createRule(String rule, ArrayList<Dependency> dependencies, String[] acceptanceList, boolean acceptPersonalPronouns) {
+			boolean negation = false;
 			ArrayList<Dependency> relatedToRule = new ArrayList<Dependency>();
 			for (Dependency d: dependencies) {
 				if (d.isRelationAccepted(acceptanceList)) {
-					
+					relatedToRule.add(d);
 				}
 			}
+			
+			for (Dependency d: dependencies) {
+				if (d.isRelationAccepted(new String[] {"neg"}) && d.getNode_1_string().compareToIgnoreCase(rule) == 0) {
+					negation = true;
+				}
+			}
+			
+			if (!acceptPersonalPronouns) {
+				for (Iterator<Dependency> iterator = relatedToRule.iterator(); iterator.hasNext();) {
+					Dependency d = iterator.next();
+					if (d.isNode1PersonalPronoun() || d.isNode2PersonalPronoun()) 
+						iterator.remove();
+				}
+			}
+			
+			if (negation) {
+				System.out.print("not ");
+			}
+			System.out.print(rule + "(");
+			for (Dependency d: relatedToRule) {
+				System.out.print(d.getNode_2_string() + " ");				
+			}
+			System.out.print(")");
+			return "";
 	}
 	
 		
