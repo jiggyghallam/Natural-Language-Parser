@@ -14,7 +14,7 @@ public class Formaliser {
 	}
 
 	
-	public String createRule(String rule, ArrayList<Dependency> dependencies, String[] acceptanceList, boolean acceptPersonalPronouns) {
+	public String createRule(String rule, ArrayList<Dependency> dependencies, String[] acceptanceList, boolean acceptPersonalPronouns, boolean acceptNounCompoundModifiers) {
 			boolean negation = false;
 			ArrayList<Dependency> relatedToRule = new ArrayList<Dependency>();
 			for (Dependency d: dependencies) {
@@ -34,6 +34,18 @@ public class Formaliser {
 					Dependency d = iterator.next();
 					if (d.isNode1PersonalPronoun() || d.isNode2PersonalPronoun()) 
 						iterator.remove();
+				}
+			}
+			
+			if (acceptNounCompoundModifiers) {
+				for (Dependency d:dependencies) {
+					if (d.isRelationAccepted(new String[] {"nn"})) {
+						for (Dependency relatedD: relatedToRule) {
+							if (relatedD.getNode_2_number() == d.getNode_1_number()) {
+								relatedD.setNode_2_string(d.getNode_2_string()+ "-" + relatedD.getNode_2_string());
+							}
+						}
+					}
 				}
 			}
 			

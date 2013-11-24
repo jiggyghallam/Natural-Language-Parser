@@ -37,34 +37,20 @@ public class Main {
 //				.processSentence("The table won't fit through the doorway because it is too wide."));
 //		pSentArr.add(sp
 //				.processSentence("I can't cut that tree down with that axe; it is too thick."));
-//		Tree pSent = sp
-//				.processSentence("I was trying to balance the bottle upside down on the table, but I couldn't do it because it was so top-heavy.");
-//		Tree pSent = sp
-//				.processSentence("Jane gave Joan candy because she was hungry.");
-//		
-		
+//		pSentArr.add(sp
+//				.processSentence("The path to the lake was blocked, so we couldn't reach it."));
+//		pSentArr.add(sp
+//				.processSentence("The delivery truck zoomed by the school bus because it was going so fast."));
+//		pSentArr.add(sp
+//				.processSentence("John couldn't see the stage with Billy in front of him because he is so short."));
+//		pSentArr.add(sp
+//				.processSentence("Jane gave Kirsty some candy because she was hungry."));
+//		pSentArr.add(sp
+//				.processSentence("Tom threw his schoolbag down to Ray after he reached the top of the stairs."));
 
-//		p.parseSentance(pSent);
-//		p.printTree(pSent, "penn,typedDependenciesCollapsed");
-//		for (Tree pSent : pSentArr) {
-//			System.out
-//					.println("====================Original Tree==================");
-//			String s = p.getTreeDependencies(pSent);
-//			System.out.println(s);
-//			System.out
-//					.println("===================================================");
-//			System.out.println();
-//			Formaliser f = new Formaliser();
-//
-//			System.out
-//					.println("====================Root Relations==================");
-//			//f.relatedToRoot(s);
-//			ArrayList<String> temp = f.getAllDependenciesRelations(s);
-//			Dependency d = new Dependency(temp.get(0));
-//		}
 
 		Tree pSent = sp
-				.processSentence("I can't cut that tree down with that axe; it is too thick.");
+				.processSentence("Jane gave Kirsty some candy because she was hungry.");
 		System.out
 				.println("====================Original Tree==================");
 
@@ -84,15 +70,23 @@ public class Main {
 			dependencies.add(new Dependency(str));
 		}
 
+		
+		System.out
+		.println("\n===================================================");
 		String root = "";
 		for (Dependency d : dependencies) {
 			if (d.getNode_1_number() == 0) {
 				root = d.getNode_2_string();
 			}
+			if(d.getNode_1_string().compareToIgnoreCase(root) == 0 || d.getNode_1_string().compareToIgnoreCase("reach") == 0)
+			{
+				System.out.println(d.toString());
+			}
 		}
-
+		System.out
+		.println("\n=======================rule=========================\n");
 		f.createRule(root, dependencies,
-				new String[] { "nsubj", "prep", "dobj", "iobj" }, false);
+				new String[] { "nsubj", "prep", "dobj", "iobj" }, false,true);
 
 	}
 }
