@@ -46,11 +46,13 @@ public class Main {
 //		pSentArr.add(sp
 //				.processSentence("Jane gave Kirsty some candy because she was hungry."));
 //		pSentArr.add(sp
-//				.processSentence("Tom threw his schoolbag down to Ray after he reached the top of the stairs."));
+//		.processSentence("Tom threw his schoolbag down to Ray after he reached the top of the stairs."));
+//		pSentArr.add(sp
+//		.processSentence("The sculpture rolled off the shelf because it wasn't anchored."));
 
 
 		Tree pSent = sp
-				.processSentence("Jane gave Kirsty some candy because she was hungry.");
+				.processSentence("The sculpture rolled off the shelf because it wasn't anchored.");
 		System.out
 				.println("====================Original Tree==================");
 
