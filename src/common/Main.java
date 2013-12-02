@@ -52,7 +52,7 @@ public class Main {
 
 
 		Tree pSent = sp
-				.processSentence("The sculpture rolled off the shelf because it wasn't anchored.");
+				.processSentence("I took the water bottle out of the backpack so that it would be lighter.");
 		System.out
 				.println("====================Original Tree==================");
 
@@ -89,6 +89,9 @@ public class Main {
 		.println("\n=======================rule=========================\n");
 		f.createRule(root, dependencies,
 				new String[] { "nsubj", "prep", "dobj", "iobj" }, false,true);
+		
+		System.out.println();
+		SynonymGenerator sg = new SynonymGenerator();
 
 	}
 }
