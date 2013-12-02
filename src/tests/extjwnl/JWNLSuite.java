@@ -34,7 +34,7 @@ import tests.extjwnl.dictionary.*;
         TestReadDatabaseBackedDictionary.class,
         TestReadFileBackedDictionary.class,
         TestReadFileChannelBackedDictionary.class,
-//        TestReadMapBackedDictionary.class,
+        TestReadMapBackedDictionary.class,
         TestThreads.class,
         TestThreadsDictionary.class,
         TestThreadsLock.class
@@ -60,7 +60,7 @@ public class JWNLSuite {
                 TestReadDatabaseBackedDictionary.class,
                 TestReadFileBackedDictionary.class,
                 TestReadFileChannelBackedDictionary.class,
-//        TestReadMapBackedDictionary.class,
+                TestReadMapBackedDictionary.class,
                 TestThreads.class,
                 TestThreadsDictionary.class,
                 TestThreadsLock.class

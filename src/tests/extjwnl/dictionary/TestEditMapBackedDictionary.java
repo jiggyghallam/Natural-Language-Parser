@@ -11,7 +11,7 @@ import java.io.InputStream;
  */
 public class TestEditMapBackedDictionary extends DictionaryEditTester {
 
-    protected static final String properties = "./src/test/resources/clean_map.xml";
+    protected static final String properties = "dict/mapped/clean_map.xml";
 
     @Override
     protected InputStream getProperties() throws FileNotFoundException {

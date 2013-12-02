@@ -16,8 +16,8 @@ import java.io.InputStream;
  */
 public class BaseData {
 
-    private final String properties = "dict/clean_file.xml";
-    private final String mapProperties = "dict/clean_map.xml";
+    private final String properties = "dict/non_mapped/clean_file.xml";
+    private final String mapProperties = "dict/mapped/clean_map.xml";
 
     protected Dictionary dictionary;
     protected Dictionary mapDictionary;

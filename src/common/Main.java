@@ -7,6 +7,7 @@ import edu.stanford.nlp.parser.lexparser.LexicalizedParser;
 
 import java.io.StringReader;
 
+import net.sf.extjwnl.JWNLException;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.process.TokenizerFactory;
 import edu.stanford.nlp.process.CoreLabelTokenFactory;
@@ -15,7 +16,13 @@ import edu.stanford.nlp.process.PTBTokenizer;
 
 public class Main {
 
+	private static String DICT_LOCATION = "dict/non_mapped/file_properties.xml";
+	
 	public static void main(String[] args) {
+		syno_stuff();
+	}
+	
+	private static void parser_stuff() {
 
 		Parser p = new Parser("models/englishPCFG.ser.gz", new String[] {
 				"-maxLength", "80", "-retainTmpSubcategories" });
@@ -91,7 +98,16 @@ public class Main {
 				new String[] { "nsubj", "prep", "dobj", "iobj" }, false,true);
 		
 		System.out.println();
-		SynonymGenerator sg = new SynonymGenerator();
-
+	}
+	
+	private static void syno_stuff() {
+		SynonymGenerator sg = new SynonymGenerator(DICT_LOCATION);
+		try {
+			sg.getWord("dog");
+		} catch (JWNLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
+

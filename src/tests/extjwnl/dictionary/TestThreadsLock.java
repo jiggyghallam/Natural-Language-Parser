@@ -25,8 +25,8 @@ public class TestThreadsLock extends MultiThreadedTestCase {
 
     private static final Log log = LogFactory.getLog(TestThreadsLock.class);
 
-    private final String properties = "./src/main/resources/net/sf/extjwnl/file_properties.xml";
-    private final String wordlist = "./data/wn30/noun.exc";
+    private final String properties = "dict/file_properties.xml";
+    private final String wordlist = "dict/noun.exc";
     private static Dictionary d;
     private final int threadCount = 5;
 
