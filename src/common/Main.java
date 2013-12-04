@@ -8,14 +8,18 @@ import edu.stanford.nlp.parser.lexparser.LexicalizedParser;
 import java.io.StringReader;
 
 import net.sf.extjwnl.JWNLException;
+import net.sf.extjwnl.data.POS;
+import net.sf.extjwnl.data.PointerType;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.process.TokenizerFactory;
 import edu.stanford.nlp.process.CoreLabelTokenFactory;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.process.PTBTokenizer;
 
+
 public class Main {
 
+	private static String WORD = "cat";
 	private static String DICT_LOCATION = "dict/non_mapped/file_properties.xml";
 	
 	public static void main(String[] args) {
@@ -101,10 +105,22 @@ public class Main {
 	}
 	
 	private static void syno_stuff() {
-		SynonymGenerator sg = new SynonymGenerator(DICT_LOCATION);
+		WordNet sg = new WordNet(DICT_LOCATION);
 		try {
-			sg.getWord("dog");
+			//sg.printDirectHypernym(WORD);
+			//sg.printHypernymTreeAllPOS(WORD, 20);
+			//sg.printHypernymTree(WORD, 20, POS.VERB);
+			//sg.printHyponym(WORD);
+			//sg.printSynonyms(WORD);
+			sg.printSynonymTreeAllPOS(WORD, 2);
+			//sg.printInfo("run", POS.VERB);
+			//sg.printAsymmetricRelationship("dog", "cat", 1);
+			sg.printRelationship("walk", "stdsep", 1, PointerType.ENTAILMENT);
 		} catch (JWNLException e) {
+			System.out.println("Thrown");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (CloneNotSupportedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

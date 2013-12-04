@@ -3,6 +3,8 @@ package common;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import enums.PersonalPronouns;
+
 public class Dependency {
 	
 	private int node_1_number;
