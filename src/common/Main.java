@@ -21,17 +21,23 @@ public class Main {
 
 	private static String WORD = "cat";
 	private static String DICT_LOCATION = "dict/non_mapped/file_properties.xml";
+	private static String PARSER_URL = "models/englishPCFG.ser.gz";
+	private static String TAGGER_URL = "models/english-bidirectional-distsim.tagger";
+	private static String SENTENCE1 = "I took the water bottle out of the backpack so that it would be lighter.";
+	
 	
 	public static void main(String[] args) {
-		syno_stuff();
+		//syno_stuff();
+		//parser_stuff();
+		combine(SENTENCE1);
 	}
 	
 	private static void parser_stuff() {
 
-		Parser p = new Parser("models/englishPCFG.ser.gz", new String[] {
+		Parser p = new Parser(PARSER_URL,TAGGER_URL, new String[] {
 				"-maxLength", "80", "-retainTmpSubcategories" });
 		SentanceProcessor sp = new SentanceProcessor(
-				"models/englishPCFG.ser.gz", new String[] { "-outputFormat",
+				PARSER_URL, new String[] { "-outputFormat",
 						"penn,typedDependenciesCollapsed",
 						"-retainTmpSubcategories" });
 
@@ -102,6 +108,10 @@ public class Main {
 				new String[] { "nsubj", "prep", "dobj", "iobj" }, false,true);
 		
 		System.out.println();
+		System.out.println();
+		System.out
+		.println("\n=======================tagger=========================\n");
+		p.getPOSTaggedSentence("I took the water bottle out of the backpack so that it would be lighter.");
 	}
 	
 	private static void syno_stuff() {
@@ -124,6 +134,39 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	private static void combine(String inputSentence) {
+		Formaliser f = new Formaliser();
+		String root = "";
+		Parser p = new Parser(PARSER_URL,TAGGER_URL, new String[] {
+				"-maxLength", "80", "-retainTmpSubcategories" });
+		SentanceProcessor sp = new SentanceProcessor(
+				PARSER_URL, new String[] { "-outputFormat",
+						"penn,typedDependenciesCollapsed",
+						"-retainTmpSubcategories" });
+		
+		Tree pSent = sp.processSentence(inputSentence);
+		String s = p.getTreeDependencies(pSent);	
+		ArrayList<String> temp = f.getAllDependenciesRelations(s);
+		ArrayList<Dependency> dependencies = new ArrayList<Dependency>();
+		
+		for (String str : temp) {
+			dependencies.add(new Dependency(str));
+		}
+		for (Dependency d : dependencies) {
+			if (d.getNode_1_number() == 0) 
+					root = d.getNode_2_string();
+		}
+		f.createRule(root, dependencies, new String[] { "nsubj", "prep", "dobj", "iobj" }, false,false);
+		
+		String taggedSentence = p.getPOSTaggedSentence(inputSentence);
+		for (Dependency d : dependencies) {
+			p.getWord(d, taggedSentence);
+		}
+		
+		
+		
 	}
 }
 

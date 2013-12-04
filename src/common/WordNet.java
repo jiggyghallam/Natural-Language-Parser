@@ -29,24 +29,6 @@ public class WordNet {
 		try {
 			dictionary = Dictionary.getInstance(new FileInputStream(location));
 
-			// IndexWord word = wordnet.getIndexWord(POS.VERB, "run");
-			// IndexWord s = wordnet.
-			/*
-			 * IndexWordSet set = wordnet.lookupAllIndexWords("run");
-			 * System.out.println(set.getLemma().isEmpty()); String str =
-			 * set.getLemma(); System.out.println(str); IndexWord word =
-			 * set.getIndexWordArray(); System.out.println(word.length);
-			 */
-			// Turn it into an array of IndexWords
-			/*
-			 * IndexWord ws = set.getIndexWordArray(); POS p = ws.getPOS();
-			 * Set<String> synonyms = new HashSet<String>(); //IndexWord
-			 * indexWord = wordnet.lookupIndexWord(POS.NOUN, "wife"); IndexWord
-			 * indexWord = wordnet.lookupIndexWord(p, "director"); List<Synset>
-			 * synSets = indexWord.getSenses(); for (Synset synset : synSets) {
-			 * List<Word> words = synset.getWords(); for (Word word : words) {
-			 * synonyms.add(word.getLemma()); } } System.out.println(synonyms);
-			 */
 
 		} catch (FileNotFoundException e) {
 			System.err
@@ -332,13 +314,28 @@ public class WordNet {
 		}
 	}
 
-	public void printInfo(String word) throws JWNLException {
+	public void printInfoAllPOS(String word) throws JWNLException {
 		ArrayList<IndexWord> indexWordArray = getStringAsIndexWordArray(word);
+		for (IndexWord iw: indexWordArray) {
+			System.out.println(iw.getSenses().get(0).getGloss());
+		}
+	}
+	public ArrayList<String> getInfoAllPOS(String word) throws JWNLException {
+		ArrayList<IndexWord> indexWordArray = getStringAsIndexWordArray(word);
+		ArrayList<String> isa = new ArrayList<String>();
+		for (IndexWord iw: indexWordArray) {
+			isa.add(iw.getSenses().get(0).getGloss());
+		}
+		return isa;
 	}
 
 	public void printInfo(String word, POS pos) throws JWNLException {
 		IndexWord indexWord = dictionary.getIndexWord(pos, word);
 		System.out.println(indexWord.getSenses().get(0).getGloss());
+	}
+	public String getInfo(String word, POS pos) throws JWNLException {
+		IndexWord indexWord = dictionary.getIndexWord(pos, word);
+		return indexWord.getSenses().get(0).getGloss();
 
 	}
 

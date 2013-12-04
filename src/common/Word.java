@@ -17,6 +17,11 @@ public class Word {
 	
 	public Word(){}
 	
+	public Word(String string, POS pos) {
+		this.string = string;
+		this.pos = pos;
+	}
+	
 	public Word(String string, POS pos, ArrayList<String> synonyms, PointerTargetTree hypernymTree, PointerTargetTree hyponymTree, String info) {
 		this.string = string;
 		this.pos = pos;
