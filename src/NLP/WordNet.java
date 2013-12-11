@@ -1,4 +1,4 @@
-package common;
+package NLP;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -19,6 +19,7 @@ import net.sf.extjwnl.data.relationship.Relationship;
 import net.sf.extjwnl.data.relationship.RelationshipFinder;
 import net.sf.extjwnl.data.relationship.RelationshipList;
 import net.sf.extjwnl.dictionary.Dictionary;
+import net.sf.extjwnl.dictionary.MorphologicalProcessor;
 
 public class WordNet {
 
@@ -76,7 +77,7 @@ public class WordNet {
 	}
 
 	public void printHyponym(String word, POS pos) throws JWNLException {
-		IndexWord iw = dictionary.getIndexWord(pos, word);
+		IndexWord iw = getStringAsIndexWord(word, pos);
 		if (iw != null) {
 			PointerTargetTree hyponyms = PointerUtils.getHyponymTree(iw
 					.getSenses().get(0));
@@ -85,11 +86,11 @@ public class WordNet {
 		}
 	}
 
-	public PointerTargetTree getHyponym(String word, POS pos)
+	public PointerTargetTree getHyponymTree(String word, POS pos, int depth)
 			throws JWNLException {
-		IndexWord iw = dictionary.getIndexWord(pos, word);
+		IndexWord iw = getStringAsIndexWord(word, pos);
 		if (iw != null) {
-			return PointerUtils.getHyponymTree(iw.getSenses().get(0));
+			return PointerUtils.getHyponymTree(iw.getSenses().get(0),depth);
 		}
 		return null;
 	}
@@ -137,7 +138,7 @@ public class WordNet {
 
 	public void printHypernymTree(String word, int depth, POS pos)
 			throws JWNLException {
-		IndexWord indexWord = dictionary.getIndexWord(pos, word);
+		IndexWord indexWord = getStringAsIndexWord(word, pos);
 		if (indexWord != null) {
 			PointerTargetTree hypernymsTree = PointerUtils.getHypernymTree(
 					indexWord.getSenses().get(0), depth);
@@ -149,7 +150,7 @@ public class WordNet {
 
 	public PointerTargetTree getHypernymTree(String word, int depth, POS pos)
 			throws JWNLException {
-		IndexWord indexWord = dictionary.getIndexWord(pos, word);
+		IndexWord indexWord = getStringAsIndexWord(word, pos);
 		if (indexWord != null) {
 			PointerTargetTree hypernymsTree = PointerUtils.getHypernymTree(
 					indexWord.getSenses().get(0), depth);
@@ -199,7 +200,7 @@ public class WordNet {
 
 	public void printSynonymTree(String word, int depth, POS pos)
 			throws JWNLException {
-		IndexWord iw = dictionary.getIndexWord(pos, word);
+		IndexWord iw = getStringAsIndexWord(word, pos);
 		if (iw != null) {
 			PointerTargetTree synTree = PointerUtils.getSynonymTree(iw
 					.getSenses().get(0), depth);
@@ -211,9 +212,9 @@ public class WordNet {
 
 	public PointerTargetTree getSynonymTree(String word, int depth, POS pos)
 			throws JWNLException {
-		IndexWord iw = dictionary.getIndexWord(pos, word);
+		IndexWord iw = getStringAsIndexWord(word, pos);
 		if (iw != null) {
-			return PointerUtils.getSynonymTree(iw.getSenses().get(0), depth);
+			return PointerUtils.getSynonymTree(iw.getSenses().get(0).getSynset(), depth);
 		}
 		return null;
 	}
@@ -330,11 +331,13 @@ public class WordNet {
 	}
 
 	public void printInfo(String word, POS pos) throws JWNLException {
-		IndexWord indexWord = dictionary.getIndexWord(pos, word);
+		IndexWord indexWord = getStringAsIndexWord(word, pos);
 		System.out.println(indexWord.getSenses().get(0).getGloss());
 	}
 	public String getInfo(String word, POS pos) throws JWNLException {
-		IndexWord indexWord = dictionary.getIndexWord(pos, word);
+		IndexWord indexWord = getStringAsIndexWord(word, pos);
+		if (indexWord == null)
+			return "";
 		return indexWord.getSenses().get(0).getGloss();
 
 	}
@@ -349,7 +352,7 @@ public class WordNet {
 		for (POS pos : POS.values()) {
 			if (indexWord == null)
 				before = true;
-			indexWord = dictionary.getIndexWord(pos, word);
+			indexWord = getStringAsIndexWord(word, pos);
 			if (indexWord != null)
 				after = true;
 
@@ -365,6 +368,18 @@ public class WordNet {
 			}
 		}
 		return indexWordArray;
+	}
+
+	public IndexWord getStringAsIndexWord(String word, POS pos) throws JWNLException {
+		IndexWord indexWord = dictionary.getIndexWord(pos, word);
+		if (indexWord == null) {
+			MorphologicalProcessor morph =  dictionary.getMorphologicalProcessor();
+			indexWord = morph.lookupBaseForm(pos, word);
+			if (indexWord == null) {
+				System.err.println("Word is NULL, not in dictionary");
+			}
+		}
+		return indexWord;
 	}
 
 }

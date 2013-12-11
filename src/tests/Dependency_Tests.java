@@ -4,8 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import common.Dependency;
-import common.Formaliser;
+import NLP.Dependency;
+import NLP.Formaliser;
+
 
 public class Dependency_Tests {
 

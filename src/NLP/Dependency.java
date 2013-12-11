@@ -1,4 +1,4 @@
-package common;
+package NLP;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -12,6 +12,7 @@ public class Dependency {
 	private String relation;
 	private String node_1_string;
 	private String node_2_string;
+	private boolean negated;
 	
 	public Dependency() {}
 	
@@ -24,6 +25,7 @@ public class Dependency {
 		setNode_1_number(Integer.parseInt(m.group(3)));
 		setNode_2_string(m.group(4));
 		setNode_2_number(Integer.parseInt(m.group(5)));
+		setNegated(false);
 
 	}
 
@@ -95,6 +97,14 @@ public class Dependency {
 
 	public void setNode_2_string(String node_2_string) {
 		this.node_2_string = node_2_string;
+	}
+
+	public boolean isNegated() {
+		return negated;
+	}
+
+	public void setNegated(boolean negated) {
+		this.negated = negated;
 	}
 
 }

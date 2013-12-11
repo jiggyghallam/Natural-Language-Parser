@@ -1,4 +1,4 @@
-package common;
+package NLP;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -8,6 +8,9 @@ import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.*;
 
+import simplenlg.features.Tense;
+import net.sf.extjwnl.JWNLException;
+import net.sf.extjwnl.data.IndexWord;
 import net.sf.extjwnl.data.POS;
 import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 import edu.stanford.nlp.trees.*;
@@ -16,12 +19,13 @@ import edu.stanford.nlp.ling.Sentence;
 import edu.stanford.nlp.ling.TaggedWord;
 import edu.stanford.nlp.parser.lexparser.LexicalizedParser;
 
-class Parser {
+public class Parser {
 
 	private String fileURL;
 	private String taggerURL;
 	private LexicalizedParser lp;
 	private MaxentTagger tagger;
+	private TenseModifier tenseModifier;
 
 	public Parser(String fileURL, String taggerURL, String[] options) {
 		this.fileURL = fileURL;
@@ -29,6 +33,7 @@ class Parser {
 		lp = LexicalizedParser.loadModel(fileURL);
 		tagger = new MaxentTagger(taggerURL);
 		lp.setOptionFlags(options);
+		tenseModifier = new TenseModifier();
 	}
 
 	public void parseSentance(Tree sentance) {
@@ -80,7 +85,7 @@ class Parser {
 		return null;
 	}
 
-	public Word getWord(Dependency dependency, String POSTaggedString) {
+	public Word getWord(Dependency dependency, String POSTaggedString, WordNet wordNet) {
 		String wordStr = dependency.getNode_2_string();
 		String[] POSTaggedStringArr = POSTaggedString.split("\\s");
 		// System.out.println(POSTaggedString.length());
@@ -92,7 +97,18 @@ class Parser {
 			}
 		}
 		tag = tag.split("\\W")[1];
-		return new Word(wordStr, getPOSfromTag(tag));
+		try {
+			IndexWord iw = wordNet.getStringAsIndexWord(tenseModifier.changeTense(wordStr, Tense.PRESENT), getPOSfromTag(tag));
+			if (iw == null) {
+				System.err.println("A name has been found, replaced the name " + wordStr + " with human");
+				return new Word("human", POS.NOUN);
+			}
+			return new Word(wordStr, getPOSfromTag(tag));
+		} catch (JWNLException e) {
+			System.err.println("Exception thrown when creating a word in parser\n");
+			e.printStackTrace();
+			return new Word(wordStr, POS.NOUN);
+		}
 	}
 
 	private POS getPOSfromTag(String tag) {

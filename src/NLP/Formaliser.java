@@ -1,10 +1,11 @@
-package common;
+package NLP;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 public class Formaliser {
 	
 	//String[] acceptanceList = {"nsubj", "prep","dobj"};
@@ -14,7 +15,7 @@ public class Formaliser {
 	}
 
 	
-	public String createRule(String rule, ArrayList<Dependency> dependencies, String[] acceptanceList, boolean acceptPersonalPronouns, boolean acceptNounCompoundModifiers) {
+	public String getRuleAsString(String rule, ArrayList<Dependency> dependencies, String[] acceptanceList, boolean acceptPersonalPronouns, boolean acceptNounCompoundModifiers) {
 			boolean negation = false;
 			ArrayList<Dependency> relatedToRule = new ArrayList<Dependency>();
 			for (Dependency d: dependencies) {
@@ -51,6 +52,7 @@ public class Formaliser {
 			
 			if (negation) {
 				System.out.print("not ");
+				relatedToRule.get(0).setNegated(true);
 			}
 			System.out.print(rule + "(");
 			for (Dependency d: relatedToRule) {
@@ -59,6 +61,48 @@ public class Formaliser {
 			System.out.print(")");
 			return "";
 	}
+	
+	public ArrayList<Dependency> getRuleDependencies(String rule, ArrayList<Dependency> dependencies, String[] acceptanceList, boolean acceptPersonalPronouns, boolean acceptNounCompoundModifiers) {
+		boolean negation = false;
+		ArrayList<Dependency> relatedToRule = new ArrayList<Dependency>();
+		for (Dependency d: dependencies) {
+			if (d.isRelationAccepted(acceptanceList)) {
+				relatedToRule.add(d);
+			}
+		}
+		
+		for (Dependency d: dependencies) {
+			if (d.isRelationAccepted(new String[] {"neg"}) && d.getNode_1_string().compareToIgnoreCase(rule) == 0) {
+				negation = true;
+			}
+		}
+		
+		if (!acceptPersonalPronouns) {
+			for (Iterator<Dependency> iterator = relatedToRule.iterator(); iterator.hasNext();) {
+				Dependency d = iterator.next();
+				if (d.isNode1PersonalPronoun() || d.isNode2PersonalPronoun()) 
+					iterator.remove();
+			}
+		}
+		
+		if (acceptNounCompoundModifiers) {
+			for (Dependency d:dependencies) {
+				if (d.isRelationAccepted(new String[] {"nn"})) {
+					for (Dependency relatedD: relatedToRule) {
+						if (relatedD.getNode_2_number() == d.getNode_1_number()) {
+							relatedD.setNode_2_string(d.getNode_2_string()+ "-" + relatedD.getNode_2_string());
+						}
+					}
+				}
+			}
+		}
+		
+		if (negation) {
+			//System.out.print("not ");
+			relatedToRule.get(0).setNegated(true);
+		}
+		return relatedToRule;
+}
 	
 		
 	public ArrayList<String> getAllDependenciesRelations(String string) {
