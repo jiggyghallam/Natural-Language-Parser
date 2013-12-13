@@ -1,11 +1,9 @@
 package NLP;
 
-import java.awt.geom.CubicCurve2D;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -25,6 +23,7 @@ public class Word {
 	private PointerTargetTree hyponymTree;
 	private String info = "";
 	private StringBuilder compiledInfomation;
+	private int sense;
 	
 	private boolean name;
 
@@ -39,6 +38,7 @@ public class Word {
 		}
 		this.setPos(pos);
 		compiledInfomation = new StringBuilder();
+		setSense(0);
 	}
 
 	public Word(String string, POS pos, PointerTargetTree synonyms,
@@ -328,6 +328,14 @@ public class Word {
 
 	public String getCompiledInfo() {
 		return compiledInfomation.toString();
+	}
+
+	public int getSense() {
+		return sense;
+	}
+
+	public void setSense(int sense) {
+		this.sense = sense;
 	}
 
 }
