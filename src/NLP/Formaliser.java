@@ -1,5 +1,6 @@
 package NLP;
 
+import java.io.PrintStream;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -50,16 +51,32 @@ public class Formaliser {
 				}
 			}
 			
+			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.append("fof(hyp,hypothesis,");
 			if (negation) {
-				System.out.print("not ");
-				relatedToRule.get(0).setNegated(true);
+				stringBuilder.append("~");
 			}
-			System.out.print(rule + "(");
-			for (Dependency d: relatedToRule) {
-				System.out.print(d.getNode_2_string() + " ");				
+			stringBuilder.append(rule+"(");
+			for (int i = 0; i < relatedToRule.size(); i++) {
+				String depStr = relatedToRule.get(i).getNode_2_string();
+				if (i == relatedToRule.size()-1) {
+					stringBuilder.append(depStr+")).");					
+				} else {
+					stringBuilder.append(depStr+",");
+				}
 			}
-			System.out.print(")");
-			return "";
+			stringBuilder.append("\n");
+			
+//			if (negation) {
+//				System.out.print("not ");
+//				relatedToRule.get(0).setNegated(true);
+//			}
+//			System.out.print(rule + "(");
+//			for (Dependency d: relatedToRule) {
+//				System.out.print(d.getNode_2_string() + " ");				
+//			}
+//			System.out.print(")");
+			return stringBuilder.toString();
 	}
 	
 	public ArrayList<Dependency> getRuleDependencies(String rule, ArrayList<Dependency> dependencies, String[] acceptanceList, boolean acceptPersonalPronouns, boolean acceptNounCompoundModifiers) {

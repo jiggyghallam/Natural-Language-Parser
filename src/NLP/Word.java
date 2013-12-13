@@ -18,7 +18,7 @@ import net.sf.extjwnl.data.list.PointerTargetTree;
 public class Word {
 
 	private POS pos;
-	private IndexWord word;
+	private IndexWord indexWord;
 	private String string;
 	private PointerTargetTree synonymTree;
 	private PointerTargetTree hypernymTree;
@@ -34,7 +34,7 @@ public class Word {
 
 	public Word(IndexWord word, POS pos, int senses) {
 		this.string = word.getLemma().toLowerCase();
-		this.word = word;
+		this.setIndexWord(word);
 		if (pos == null) {
 			name = true;
 			pos = POS.NOUN;
@@ -47,7 +47,7 @@ public class Word {
 	
 	public Word(String string, POS pos, int senses) {
 		this.string = string.toLowerCase();
-		this.word = null;
+		this.setIndexWord(null);
 		if (pos == null) {
 			name = true;
 			pos = POS.NOUN;
@@ -82,7 +82,7 @@ public class Word {
 		sb.append("%Human readable time: " + dateFormat.format(date) + " " + System.currentTimeMillis() + "\n");
 		if (withComments) {
 			sb.append("%Word: " + string + " is a " + pos.toString()
-					+ " and pronoun is " + name
+					+ " in sense number " + senses + " and pronoun is " + name
 					+ ". The current meaning sense of " + string + " is: "
 					+ info + ".\n\n");
 		}
@@ -122,7 +122,7 @@ public class Word {
 		StringBuilder sb = new StringBuilder();
 		// Hypernym tree
 		List<PointerTargetNodeList> hyperList = hypernymTree.toList();
-		sb.append("\r\r\n%Hypernym tree of " + string + ". Meaning " + string
+		sb.append("\r\r\n%Hypernym tree of " + string + " in sense number " + senses + ". Meaning " + string
 				+ " is a...\r\n");
 		PointerTargetNode ptnCurrent = null;
 		PointerTargetNode ptnPrevious = null;
@@ -155,7 +155,7 @@ public class Word {
 		}
 		// Hyponym tree
 		List<PointerTargetNodeList> hypoList = hyponymTree.toList();
-		sb.append("\r\r\n%Hyponym tree of " + string + ". Meaning ... is a "
+		sb.append("\r\r\n%Hyponym tree of " + string + " in sense number " + senses + ". Meaning ... is a "
 				+ string + "\n\n");
 		for (PointerTargetNodeList nl : hypoList) {
 			for (Iterator<PointerTargetNode> iterator = nl.iterator(); iterator
@@ -170,7 +170,7 @@ public class Word {
 		}
 		// Synonym tree
 		List<PointerTargetNodeList> synoList = synonymTree.toList();
-		sb.append("\r\r\n%Synonym tree of " + string + ".\n\n");
+		sb.append("\r\r\n%Synonym tree of " + string + " in sense number " + senses + ".\n\n");
 		for (PointerTargetNodeList nl : synoList) {
 			for (Iterator<PointerTargetNode> iterator = nl.iterator(); iterator
 					.hasNext();) {
@@ -194,7 +194,7 @@ public class Word {
 		StringBuilder sb = new StringBuilder();
 		// Hypernym tree
 		List<PointerTargetNodeList> hyperList = hypernymTree.toList();
-		sb.append("\r\r\n%Hypernym tree of " + string + ". Meaning " + string
+		sb.append("\r\r\n%Hypernym tree of " + string + " in sense number " + senses + ". Meaning " + string
 				+ " is a...\n\n");
 		for (PointerTargetNodeList nl : hyperList) {
 			for (Iterator<PointerTargetNode> iterator = nl.iterator(); iterator
@@ -213,7 +213,7 @@ public class Word {
 		}
 		// Hyponym tree
 		List<PointerTargetNodeList> hypoList = hyponymTree.toList();
-		sb.append("\r\r\n%Hyponym tree of " + string + ". Meaning ... is a "
+		sb.append("\r\r\n%Hyponym tree of " + string + " in sense number " + senses + ". Meaning ... is a "
 				+ string + "\n\n");
 		for (PointerTargetNodeList nl : hypoList) {
 			for (Iterator<PointerTargetNode> iterator = nl.iterator(); iterator
@@ -230,7 +230,7 @@ public class Word {
 		}
 		// Synonym tree
 		List<PointerTargetNodeList> synoList = synonymTree.toList();
-		sb.append("\r\r\n%Synonym tree of " + string + ".\n\n");
+		sb.append("\r\r\n%Synonym tree of " + string + " in sense number " + senses + ".\n\n");
 		for (PointerTargetNodeList nl : synoList) {
 			for (Iterator<PointerTargetNode> iterator = nl.iterator(); iterator
 					.hasNext();) {
@@ -354,6 +354,14 @@ public class Word {
 
 	public void setSenses(int sense) {
 		this.senses = sense;
+	}
+
+	public IndexWord getIndexWord() {
+		return indexWord;
+	}
+
+	public void setIndexWord(IndexWord indexWord) {
+		this.indexWord = indexWord;
 	}
 
 }

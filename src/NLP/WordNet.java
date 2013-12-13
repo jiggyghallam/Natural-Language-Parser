@@ -94,6 +94,10 @@ public class WordNet {
 		}
 		return null;
 	}
+	
+	public PointerTargetTree getHyponymTree(IndexWord word, int depth, int sense) {
+		return PointerUtils.getHyponymTree(word.getSenses().get(sense),depth);
+	}
 
 	public void printDirectHypernym(String word) throws JWNLException {
 		ArrayList<IndexWord> indexWordArray = getStringAsIndexWordArray(word);
@@ -158,6 +162,11 @@ public class WordNet {
 		}
 		return null;
 	}
+	
+	public PointerTargetTree getHypernymTree(IndexWord word, int depth, int sense) {
+		return PointerUtils.getHypernymTree(word.getSenses().get(sense), depth);
+	}
+
 
 	public void printSynonymsAllPOS(String word) throws JWNLException {
 		ArrayList<IndexWord> indexWordArray = getStringAsIndexWordArray(word);
@@ -218,6 +227,11 @@ public class WordNet {
 		}
 		return null;
 	}
+	
+	public PointerTargetTree getSynonymTree(IndexWord word, int depth, int sense) {
+			return PointerUtils.getSynonymTree(word.getSenses().get(sense).getSynset(), depth);
+	}
+
 
 	public void printAsymmetricRelationship(String startstr, String endstr,
 			int senses) throws JWNLException, CloneNotSupportedException {
@@ -334,11 +348,17 @@ public class WordNet {
 		IndexWord indexWord = getStringAsIndexWord(word, pos);
 		System.out.println(indexWord.getSenses().get(0).getGloss());
 	}
+	
 	public String getInfo(String word, POS pos) throws JWNLException {
 		IndexWord indexWord = getStringAsIndexWord(word, pos);
 		if (indexWord == null)
 			return "";
 		return indexWord.getSenses().get(0).getGloss();
+
+	}
+	
+	public String getInfo(IndexWord word, int sense) throws JWNLException {
+		return word.getSenses().get(sense).getGloss();
 
 	}
 

@@ -154,36 +154,51 @@ public class Main {
 	}
 
 	private static void combine(String inputSentence) {
-		ArrayList<String> pStringsArray = new ArrayList<String>();
-		pStringsArray
+		ArrayList<String> sentenceStringArray = new ArrayList<String>();
+		sentenceStringArray
 				.add("The trophy doesn't fit into the brown suitcase because it's too small.");
-		pStringsArray
+		sentenceStringArray
 				.add("I poured water from the bottle into the cup until it was full.");
-		pStringsArray
+		sentenceStringArray
 				.add("The man couldn't lift his son because he was so weak.");
-		pStringsArray
+		sentenceStringArray
 				.add("I took the water bottle out of the backpack so that it would be lighter.");
-		pStringsArray
+		sentenceStringArray
 				.add("The table won't fit through the doorway because it is too wide.");
-		pStringsArray
+		sentenceStringArray
 				.add("I can't cut that tree down with that axe; it is too thick.");
-		pStringsArray
+		sentenceStringArray
 				.add("The path to the lake was blocked, so we couldn't reach it.");
-		pStringsArray
+		sentenceStringArray
 				.add("The delivery truck zoomed by the school bus because it was going so fast.");
-		pStringsArray
+		sentenceStringArray
 				.add("John couldn't see the stage with Billy in front of him because he is so short.");
-		pStringsArray
+		sentenceStringArray
 				.add("Jane gave Kirsty some candy because she was hungry.");
-		pStringsArray
+		sentenceStringArray
 				.add("Tom threw his schoolbag down to Ray after he reached the top of the stairs.");
-		pStringsArray
+		sentenceStringArray
 				.add("The sculpture rolled off the shelf because it wasn't anchored.");
 
-		
+		ArrayList<String> questionStringArray = new ArrayList<String>();
+		questionStringArray.add("What is to small? small? big");
+
+		ArrayList<String> answerStringArray = new ArrayList<String>();
+		answerStringArray.add("The suitcase. suitcase. trophy");
+
 		KnowledgeBaseCreator kb = new KnowledgeBaseCreator();
+
+		kb.processSentence(sentenceStringArray.get(0), 10, 10, true);
+
+		kb.processQuestion(questionStringArray.get(0),
+				answerStringArray.get(0),10,10, true);
 		
-		kb.processSentence(pStringsArray.get(0), 10, 10, false);
+		try {
+			kb.writeKnowledgeBaseToFile("wordInfo.tptp", false);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
