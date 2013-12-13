@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import net.sf.extjwnl.data.IndexWord;
 import net.sf.extjwnl.data.POS;
 import net.sf.extjwnl.data.list.PointerTargetNode;
 import net.sf.extjwnl.data.list.PointerTargetNodeList;
@@ -17,28 +18,44 @@ import net.sf.extjwnl.data.list.PointerTargetTree;
 public class Word {
 
 	private POS pos;
+	private IndexWord word;
 	private String string;
 	private PointerTargetTree synonymTree;
 	private PointerTargetTree hypernymTree;
 	private PointerTargetTree hyponymTree;
 	private String info = "";
 	private StringBuilder compiledInfomation;
-	private int sense;
+	private int senses;
 	
 	private boolean name;
 
 	public Word() {
 	}
 
-	public Word(String string, POS pos) {
-		this.string = string.toLowerCase();
+	public Word(IndexWord word, POS pos, int senses) {
+		this.string = word.getLemma().toLowerCase();
+		this.word = word;
 		if (pos == null) {
 			name = true;
 			pos = POS.NOUN;
 		}
 		this.setPos(pos);
+		this.senses = senses;
 		compiledInfomation = new StringBuilder();
-		setSense(0);
+
+	}
+	
+	public Word(String string, POS pos, int senses) {
+		this.string = string.toLowerCase();
+		this.word = null;
+		if (pos == null) {
+			name = true;
+			pos = POS.NOUN;
+		}
+		this.setPos(pos);
+		this.senses = senses;
+		compiledInfomation = new StringBuilder();
+
 	}
 
 	public Word(String string, POS pos, PointerTargetTree synonyms,
@@ -330,12 +347,13 @@ public class Word {
 		return compiledInfomation.toString();
 	}
 
-	public int getSense() {
-		return sense;
+	
+	public int getSenses() {
+		return senses;
 	}
 
-	public void setSense(int sense) {
-		this.sense = sense;
+	public void setSenses(int sense) {
+		this.senses = sense;
 	}
 
 }

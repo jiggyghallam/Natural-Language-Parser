@@ -101,13 +101,15 @@ public class Parser {
 			IndexWord iw = wordNet.getStringAsIndexWord(tenseModifier.changeTense(wordStr, Tense.PRESENT), getPOSfromTag(tag));
 			if (iw == null) {
 				System.err.println("A name has been found, replaced the name " + wordStr + " with human");
-				return new Word("human", POS.NOUN);
+				iw = wordNet.getStringAsIndexWord("human", POS.NOUN);
+				return new Word(iw, POS.NOUN,iw.getSenses().size());
 			}
-			return new Word(wordStr, getPOSfromTag(tag));
+			
+			return new Word(iw, getPOSfromTag(tag),iw.getSenses().size());
 		} catch (JWNLException e) {
 			System.err.println("Exception thrown when creating a word in parser\n");
 			e.printStackTrace();
-			return new Word(wordStr, POS.NOUN);
+			return new Word(wordStr, POS.NOUN,1);
 		}
 	}
 
