@@ -1,5 +1,5 @@
-%Time Stamp: 1386976802859
-%Human readable time: 2013/12/13 23:20:02 1386976802859
+%Time Stamp: 1387046452140
+%Human readable time: 2013/12/14 18:40:52 1387046452140
 %Word: fit is a [POS: verb] in sense number 9 and pronoun is false. The current meaning sense of fit is: be agreeable or acceptable to; "This suits my needs".
 
 
@@ -21,15 +21,15 @@ fof(be_fit,axiom,be(fit)).
 %Hyponym tree of fit in sense number 9. Meaning ... is a fit
 %Synonym tree of fit in sense number 9.
 
-%Time Stamp: 1386976802865
-%Human readable time: 2013/12/13 23:20:02 1386976802865
+%Time Stamp: 1387046452147
+%Human readable time: 2013/12/14 18:40:52 1387046452147
 %Word: fit is a [POS: verb] in sense number 9 and pronoun is false. The current meaning sense of fit is: be the right size or shape; fit correctly or as desired; "This piece won't fit into the puzzle".
 fof(go_fit,axiom,go(fit)).
 fof(tessellate_fit,axiom,tessellate(fit)).
 fof(joint_fit,axiom,joint(fit)).
 
-%Time Stamp: 1386976802875
-%Human readable time: 2013/12/13 23:20:02 1386976802875
+%Time Stamp: 1387046452155
+%Human readable time: 2013/12/14 18:40:52 1387046452155
 %Word: fit is a [POS: verb] in sense number 9 and pronoun is false. The current meaning sense of fit is: satisfy a condition or restriction; "Does this paper meet the requirements for the degree?".
 fof(coordinate_fit,axiom,coordinate(fit)).
 fof(fit_the_bill_fit,axiom,fit_the_bill(fit)).
@@ -56,8 +56,8 @@ fof(measure_up_fit,axiom,measure_up(fit)).
 fof(go_around_fit,axiom,go_around(fit)).
 fof(cover_fit,axiom,cover(fit)).
 
-%Time Stamp: 1386976802894
-%Human readable time: 2013/12/13 23:20:02 1386976802894
+%Time Stamp: 1387046452174
+%Human readable time: 2013/12/14 18:40:52 1387046452174
 %Word: fit is a [POS: verb] in sense number 9 and pronoun is false. The current meaning sense of fit is: make fit; "fit a dress"; "He fitted other pieces of paper to his cut-out".
 fof(shape_fit,axiom,shape(fit)).
 fof(form_fit,axiom,form(fit)).
@@ -66,14 +66,14 @@ fof(alter_fit,axiom,alter(fit)).
 fof(modify_fit,axiom,modify(fit)).
 fof(dovetail_fit,axiom,dovetail(fit)).
 
-%Time Stamp: 1386976802897
-%Human readable time: 2013/12/13 23:20:02 1386976802897
+%Time Stamp: 1387046452177
+%Human readable time: 2013/12/14 18:40:52 1387046452177
 %Word: fit is a [POS: verb] in sense number 9 and pronoun is false. The current meaning sense of fit is: insert or adjust several objects or people; "Can you fit the toy into the box?"; "This man can't fit himself into our work environment".
 fof(adapt_fit,axiom,adapt(fit)).
 fof(vary_fit,axiom,vary(fit)).
 
-%Time Stamp: 1386976802903
-%Human readable time: 2013/12/13 23:20:02 1386976802903
+%Time Stamp: 1387046452183
+%Human readable time: 2013/12/14 18:40:52 1387046452183
 %Word: trophy is a [POS: noun] in sense number 2 and pronoun is false. The current meaning sense of trophy is: an award for success in war or hunting.
 %Hypernym tree of trophy in sense number 2. Meaning trophy is a...
 fof(entity,axiom,entity(X)).
@@ -100,10 +100,10 @@ fof(trophy_laurels,axiom,trophy(X)=>laurels(X)).
 %Hyponym tree of trophy in sense number 2. Meaning ... is a trophy
 fof(trophy_trophy,axiom,trophy=>trophy).
 %Synonym tree of trophy in sense number 2.
-fof(trophy_trophy,axiom,trophy(trophy)).
+fof(trophy_trophy,axiom,trophy(X)<=>trophy(X)).
 
-%Time Stamp: 1386976802907
-%Human readable time: 2013/12/13 23:20:02 1386976802907
+%Time Stamp: 1387046452187
+%Human readable time: 2013/12/14 18:40:52 1387046452187
 %Word: trophy is a [POS: noun] in sense number 2 and pronoun is false. The current meaning sense of trophy is: something given as a token of victory.
 fof(prize_award,axiom,prize(X)=>award(X)).
 fof(prize_accolade,axiom,prize(X)=>accolade(X)).
@@ -121,10 +121,10 @@ fof(davis_cup_trophy,axiom,davis_cup=>trophy).
 fof(gold_medal_trophy,axiom,gold_medal=>trophy).
 fof(silver_medal_trophy,axiom,silver_medal=>trophy).
 fof(silver_trophy,axiom,silver=>trophy).
-fof(prize_trophy,axiom,prize(trophy)).
+fof(prize_trophy,axiom,prize(X)<=>trophy(X)).
 
-%Time Stamp: 1386976802920
-%Human readable time: 2013/12/13 23:20:02 1386976802920
+%Time Stamp: 1387046452200
+%Human readable time: 2013/12/14 18:40:52 1387046452200
 %Word: suitcase is a [POS: noun] in sense number 1 and pronoun is false. The current meaning sense of suitcase is: a portable rectangular container for carrying clothes; "he carried his small bag onto the plane with him".
 %Hypernym tree of suitcase in sense number 1. Meaning suitcase is a...
 fof(physical_entity_entity,axiom,physical_entity(X)=>entity(X)).
@@ -175,35 +175,391 @@ fof(gladstone_suitcase,axiom,gladstone=>suitcase).
 fof(gladstone_bag_suitcase,axiom,gladstone_bag=>suitcase).
 fof(weekender_suitcase,axiom,weekender=>suitcase).
 %Synonym tree of suitcase in sense number 1.
-fof(bag_suitcase,axiom,bag(suitcase)).
-fof(traveling_bag_suitcase,axiom,traveling_bag(suitcase)).
-fof(travelling_bag_suitcase,axiom,travelling_bag(suitcase)).
-fof(grip_suitcase,axiom,grip(suitcase)).
-fof(suitcase_suitcase,axiom,suitcase(suitcase)).
+fof(bag_suitcase,axiom,bag(X)<=>suitcase(X)).
+fof(traveling_bag_suitcase,axiom,traveling_bag(X)<=>suitcase(X)).
+fof(travelling_bag_suitcase,axiom,travelling_bag(X)<=>suitcase(X)).
+fof(grip_suitcase,axiom,grip(X)<=>suitcase(X)).
+fof(suitcase_suitcase,axiom,suitcase(X)<=>suitcase(X)).
 
 fof(hyp,hypothesis,~fit(trophy,suitcase)).
-%Time Stamp: 1386976802928
-%Human readable time: 2013/12/13 23:20:02 1386976802928
-%Word: small is a [POS: noun] in sense number 2 and pronoun is false. The current meaning sense of small is: the slender part of the back.
-%Hypernym tree of small in sense number 2. Meaning small is a...
-fof(thing_physical_entity,axiom,thing(X)=>physical_entity(X)).
-fof(part_thing,axiom,part(X)=>thing(X)).
-fof(piece_thing,axiom,piece(X)=>thing(X)).
-fof(body_part_part,axiom,body_part(X)=>part(X)).
-fof(body_part_piece,axiom,body_part(X)=>piece(X)).
-fof(small_body_part,axiom,small(X)=>body_part(X)).
-%Hyponym tree of small in sense number 2. Meaning ... is a small
+%Time Stamp: 1387046452261
+%Human readable time: 2013/12/14 18:40:52 1387046452261
+%Word: small is a [POS: adjective] in sense number 10 and pronoun is false. The current meaning sense of small is: limited or below average in number or quantity or magnitude or extent; "a little dining room"; "a little house"; "a small car"; "a little (or small) group".
+%Hypernym tree of small in sense number 10. Meaning small is a...
+fof(small,axiom,small(X)).
+fof(little,axiom,little(X)).
+%Hyponym tree of small in sense number 10. Meaning ... is a small
 fof(small_small,axiom,small=>small).
-%Synonym tree of small in sense number 2.
-fof(small_small,axiom,small(small)).
+fof(little_small,axiom,little=>small).
+%Synonym tree of small in sense number 10.
+fof(small_small,axiom,small(X)<=>small(X)).
+fof(little_small,axiom,little(X)<=>small(X)).
+fof(atomic_small,axiom,atomic(X)<=>small(X)).
+fof(subatomic_small,axiom,subatomic(X)<=>small(X)).
+fof(bantam_small,axiom,bantam(X)<=>small(X)).
+fof(diminutive_small,axiom,diminutive(X)<=>small(X)).
+fof(lilliputian_small,axiom,lilliputian(X)<=>small(X)).
+fof(midget_small,axiom,midget(X)<=>small(X)).
+fof(petite_small,axiom,petite(X)<=>small(X)).
+fof(tiny_small,axiom,tiny(X)<=>small(X)).
+fof(flyspeck_small,axiom,flyspeck(X)<=>small(X)).
+fof(bitty_small,axiom,bitty(X)<=>small(X)).
+fof(bittie_small,axiom,bittie(X)<=>small(X)).
+fof(teensy_small,axiom,teensy(X)<=>small(X)).
+fof(teentsy_small,axiom,teentsy(X)<=>small(X)).
+fof(teeny_small,axiom,teeny(X)<=>small(X)).
+fof(wee_small,axiom,wee(X)<=>small(X)).
+fof(weeny_small,axiom,weeny(X)<=>small(X)).
+fof(weensy_small,axiom,weensy(X)<=>small(X)).
+fof(teensy_weensy_small,axiom,teensy_weensy(X)<=>small(X)).
+fof(teeny_weeny_small,axiom,teeny_weeny(X)<=>small(X)).
+fof(itty_bitty_small,axiom,itty_bitty(X)<=>small(X)).
+fof(itsy_bitsy_small,axiom,itsy_bitsy(X)<=>small(X)).
+fof(dinky_small,axiom,dinky(X)<=>small(X)).
+fof(dwarfish_small,axiom,dwarfish(X)<=>small(X)).
+fof(elfin_small,axiom,elfin(X)<=>small(X)).
+fof(elflike_small,axiom,elflike(X)<=>small(X)).
+fof(gnomish_small,axiom,gnomish(X)<=>small(X)).
+fof(half_size_small,axiom,half_size(X)<=>small(X)).
+fof(infinitesimal_small,axiom,infinitesimal(X)<=>small(X)).
+fof(minute_small,axiom,minute(X)<=>small(X)).
+fof(lesser_small,axiom,lesser(X)<=>small(X)).
+fof(microscopic_small,axiom,microscopic(X)<=>small(X)).
+fof(microscopical_small,axiom,microscopical(X)<=>small(X)).
+fof(micro_small,axiom,micro(X)<=>small(X)).
+fof(miniature_small,axiom,miniature(X)<=>small(X)).
+fof(minuscule_small,axiom,minuscule(X)<=>small(X)).
+fof(miniscule_small,axiom,miniscule(X)<=>small(X)).
+fof(olive_sized_small,axiom,olive_sized(X)<=>small(X)).
+fof(pocket_size_small,axiom,pocket_size(X)<=>small(X)).
+fof(pocket_sized_small,axiom,pocket_sized(X)<=>small(X)).
+fof(pocketable_small,axiom,pocketable(X)<=>small(X)).
+fof(puny_small,axiom,puny(X)<=>small(X)).
+fof(runty_small,axiom,runty(X)<=>small(X)).
+fof(shrimpy_small,axiom,shrimpy(X)<=>small(X)).
+fof(slender_small,axiom,slender(X)<=>small(X)).
+fof(slim_small,axiom,slim(X)<=>small(X)).
+fof(smaller_small,axiom,smaller(X)<=>small(X)).
+fof(littler_small,axiom,littler(X)<=>small(X)).
+fof(smallish_small,axiom,smallish(X)<=>small(X)).
+fof(small_scale_small,axiom,small_scale(X)<=>small(X)).
+fof(undersize_small,axiom,undersize(X)<=>small(X)).
+fof(undersized_small,axiom,undersized(X)<=>small(X)).
 
-%Time Stamp: 1386976802931
-%Human readable time: 2013/12/13 23:20:02 1386976802931
-%Word: small is a [POS: noun] in sense number 2 and pronoun is false. The current meaning sense of small is: a garment size for a small person.
-fof(attribute_abstraction,axiom,attribute(X)=>abstraction(X)).
-fof(attribute_abstract_entity,axiom,attribute(X)=>abstract_entity(X)).
-fof(property_attribute,axiom,property(X)=>attribute(X)).
-fof(size_property,axiom,size(X)=>property(X)).
-fof(small_size,axiom,small(X)=>size(X)).
+%Time Stamp: 1387046453814
+%Human readable time: 2013/12/14 18:40:53 1387046453814
+%Word: small is a [POS: adjective] in sense number 10 and pronoun is false. The current meaning sense of small is: limited in size or scope; "a small business"; "a newspaper with a modest circulation"; "small-scale plans"; "a pocket-size country".
+fof(minor,axiom,minor(X)).
+fof(modest,axiom,modest(X)).
+fof(small_scale,axiom,small_scale(X)).
+fof(pocket_size,axiom,pocket_size(X)).
+fof(pocket_sized,axiom,pocket_sized(X)).
+fof(minor_small,axiom,minor=>small).
+fof(modest_small,axiom,modest=>small).
+fof(small_scale_small,axiom,small_scale=>small).
+fof(pocket_size_small,axiom,pocket_size=>small).
+fof(pocket_sized_small,axiom,pocket_sized=>small).
+fof(minor_small,axiom,minor(X)<=>small(X)).
+fof(modest_small,axiom,modest(X)<=>small(X)).
+fof(limited_small,axiom,limited(X)<=>small(X)).
+fof(narrow_small,axiom,narrow(X)<=>small(X)).
+
+%Time Stamp: 1387046453985
+%Human readable time: 2013/12/14 18:40:53 1387046453985
+%Word: small is a [POS: adjective] in sense number 10 and pronoun is false. The current meaning sense of small is: (of children and animals) young, immature; "what a big little boy you are"; "small children".
+fof(young_small,axiom,young(X)<=>small(X)).
+fof(immature_small,axiom,immature(X)<=>small(X)).
+fof(one_year_old_small,axiom,one_year_old(X)<=>small(X)).
+fof(two_year_old_small,axiom,two_year_old(X)<=>small(X)).
+fof(three_year_old_small,axiom,three_year_old(X)<=>small(X)).
+fof(four_year_old_small,axiom,four_year_old(X)<=>small(X)).
+fof(five_year_old_small,axiom,five_year_old(X)<=>small(X)).
+fof(adolescent_small,axiom,adolescent(X)<=>small(X)).
+fof(teen_small,axiom,teen(X)<=>small(X)).
+fof(teenage_small,axiom,teenage(X)<=>small(X)).
+fof(teenaged_small,axiom,teenaged(X)<=>small(X)).
+fof(infantile_small,axiom,infantile(X)<=>small(X)).
+fof(boyish_small,axiom,boyish(X)<=>small(X)).
+fof(boylike_small,axiom,boylike(X)<=>small(X)).
+fof(schoolboyish_small,axiom,schoolboyish(X)<=>small(X)).
+fof(childlike_small,axiom,childlike(X)<=>small(X)).
+fof(childly_small,axiom,childly(X)<=>small(X)).
+fof(early_small,axiom,early(X)<=>small(X)).
+fof(girlish_small,axiom,girlish(X)<=>small(X)).
+fof(schoolgirlish_small,axiom,schoolgirlish(X)<=>small(X)).
+fof(junior_small,axiom,junior(X)<=>small(X)).
+fof(newborn_small,axiom,newborn(X)<=>small(X)).
+fof(preteen_small,axiom,preteen(X)<=>small(X)).
+fof(preadolescent_small,axiom,preadolescent(X)<=>small(X)).
+fof(puppyish_small,axiom,puppyish(X)<=>small(X)).
+fof(puppylike_small,axiom,puppylike(X)<=>small(X)).
+fof(tender_small,axiom,tender(X)<=>small(X)).
+fof(youngish_small,axiom,youngish(X)<=>small(X)).
+fof(youthful_small,axiom,youthful(X)<=>small(X)).
+fof(vernal_small,axiom,vernal(X)<=>small(X)).
+
+%Time Stamp: 1387046454133
+%Human readable time: 2013/12/14 18:40:54 1387046454133
+%Word: small is a [POS: adjective] in sense number 10 and pronoun is false. The current meaning sense of small is: slight or limited; especially in degree or intensity or scope; "a series of death struggles with small time in between".
+fof(slight_small,axiom,slight(X)<=>small(X)).
+
+%Time Stamp: 1387046454213
+%Human readable time: 2013/12/14 18:40:54 1387046454213
+%Word: small is a [POS: adjective] in sense number 10 and pronoun is false. The current meaning sense of small is: low or inferior in station or quality; "a humble cottage"; "a lowly parish priest"; "a modest man of the people"; "small beginnings".
+fof(humble,axiom,humble(X)).
+fof(low,axiom,low(X)).
+fof(lowly,axiom,lowly(X)).
+fof(humble_small,axiom,humble=>small).
+fof(low_small,axiom,low=>small).
+fof(lowly_small,axiom,lowly=>small).
+fof(humble_small,axiom,humble(X)<=>small(X)).
+fof(low_small,axiom,low(X)<=>small(X)).
+fof(lowly_small,axiom,lowly(X)<=>small(X)).
+fof(inferior_small,axiom,inferior(X)<=>small(X)).
+fof(indifferent_small,axiom,indifferent(X)<=>small(X)).
+fof(low_level_small,axiom,low_level(X)<=>small(X)).
+fof(middle_level_small,axiom,middle_level(X)<=>small(X)).
+fof(outclassed_small,axiom,outclassed(X)<=>small(X)).
 
 fof(small_suitcase,conjecture,small(suitcase)).
+%Time Stamp: 1387046454392
+%Human readable time: 2013/12/14 18:40:54 1387046454392
+
+%Time Stamp: 1387046454393
+%Human readable time: 2013/12/14 18:40:54 1387046454393
+
+
+%Time Stamp: 1387046454395
+%Human readable time: 2013/12/14 18:40:54 1387046454395
+
+
+
+%Time Stamp: 1387046454396
+%Human readable time: 2013/12/14 18:40:54 1387046454396
+
+%Time Stamp: 1387046454397
+%Human readable time: 2013/12/14 18:40:54 1387046454397
+
+fof(hyp,hypothesis,~fit(trophy,suitcase)).
+%Time Stamp: 1387046454554
+%Human readable time: 2013/12/14 18:40:54 1387046454555
+%Word: big is a [POS: adjective] in sense number 13 and pronoun is false. The current meaning sense of big is: above average in size or number or quantity or magnitude or extent; "a large city"; "set out for the big city"; "a large sum"; "a big (or large) barn"; "a large family"; "big businesses"; "a big expenditure"; "a large number of newspapers"; "a big group of scientists"; "large areas of the world".
+%Hypernym tree of big in sense number 13. Meaning big is a...
+fof(large,axiom,large(X)).
+fof(big,axiom,big(X)).
+%Hyponym tree of big in sense number 13. Meaning ... is a big
+fof(large_big,axiom,large=>big).
+fof(big_big,axiom,big=>big).
+%Synonym tree of big in sense number 13.
+fof(large_big,axiom,large(X)<=>big(X)).
+fof(big_big,axiom,big(X)<=>big(X)).
+fof(ample_big,axiom,ample(X)<=>big(X)).
+fof(sizable_big,axiom,sizable(X)<=>big(X)).
+fof(sizeable_big,axiom,sizeable(X)<=>big(X)).
+fof(astronomic_big,axiom,astronomic(X)<=>big(X)).
+fof(astronomical_big,axiom,astronomical(X)<=>big(X)).
+fof(galactic_big,axiom,galactic(X)<=>big(X)).
+fof(bear_sized_big,axiom,bear_sized(X)<=>big(X)).
+fof(bigger_big,axiom,bigger(X)<=>big(X)).
+fof(larger_big,axiom,larger(X)<=>big(X)).
+fof(biggish_big,axiom,biggish(X)<=>big(X)).
+fof(largish_big,axiom,largish(X)<=>big(X)).
+fof(blown_up_big,axiom,blown_up(X)<=>big(X)).
+fof(enlarged_big,axiom,enlarged(X)<=>big(X)).
+fof(bouffant_big,axiom,bouffant(X)<=>big(X)).
+fof(puffy_big,axiom,puffy(X)<=>big(X)).
+fof(broad_big,axiom,broad(X)<=>big(X)).
+fof(spacious_big,axiom,spacious(X)<=>big(X)).
+fof(wide_big,axiom,wide(X)<=>big(X)).
+fof(bulky_big,axiom,bulky(X)<=>big(X)).
+fof(capacious_big,axiom,capacious(X)<=>big(X)).
+fof(colossal_big,axiom,colossal(X)<=>big(X)).
+fof(prodigious_big,axiom,prodigious(X)<=>big(X)).
+fof(stupendous_big,axiom,stupendous(X)<=>big(X)).
+fof(deep_big,axiom,deep(X)<=>big(X)).
+fof(double_big,axiom,double(X)<=>big(X)).
+fof(enormous_big,axiom,enormous(X)<=>big(X)).
+fof(tremendous_big,axiom,tremendous(X)<=>big(X)).
+fof(cosmic_big,axiom,cosmic(X)<=>big(X)).
+fof(elephantine_big,axiom,elephantine(X)<=>big(X)).
+fof(gargantuan_big,axiom,gargantuan(X)<=>big(X)).
+fof(giant_big,axiom,giant(X)<=>big(X)).
+fof(jumbo_big,axiom,jumbo(X)<=>big(X)).
+fof(epic_big,axiom,epic(X)<=>big(X)).
+fof(heroic_big,axiom,heroic(X)<=>big(X)).
+fof(larger_than_life_big,axiom,larger_than_life(X)<=>big(X)).
+fof(extensive_big,axiom,extensive(X)<=>big(X)).
+fof(extended_big,axiom,extended(X)<=>big(X)).
+fof(gigantic_big,axiom,gigantic(X)<=>big(X)).
+fof(mammoth_big,axiom,mammoth(X)<=>big(X)).
+fof(great_big,axiom,great(X)<=>big(X)).
+fof(grand_big,axiom,grand(X)<=>big(X)).
+fof(huge_big,axiom,huge(X)<=>big(X)).
+fof(immense_big,axiom,immense(X)<=>big(X)).
+fof(vast_big,axiom,vast(X)<=>big(X)).
+fof(brobdingnagian_big,axiom,brobdingnagian(X)<=>big(X)).
+fof(hulking_big,axiom,hulking(X)<=>big(X)).
+fof(hulky_big,axiom,hulky(X)<=>big(X)).
+fof(humongous_big,axiom,humongous(X)<=>big(X)).
+fof(banging_big,axiom,banging(X)<=>big(X)).
+fof(thumping_big,axiom,thumping(X)<=>big(X)).
+fof(whopping_big,axiom,whopping(X)<=>big(X)).
+fof(walloping_big,axiom,walloping(X)<=>big(X)).
+fof(king_size_big,axiom,king_size(X)<=>big(X)).
+fof(king_sized_big,axiom,king_sized(X)<=>big(X)).
+fof(large_mouthed_big,axiom,large_mouthed(X)<=>big(X)).
+fof(large_scale_big,axiom,large_scale(X)<=>big(X)).
+fof(life_size_big,axiom,life_size(X)<=>big(X)).
+fof(lifesize_big,axiom,lifesize(X)<=>big(X)).
+fof(life_sized_big,axiom,life_sized(X)<=>big(X)).
+fof(full_size_big,axiom,full_size(X)<=>big(X)).
+fof(macroscopic_big,axiom,macroscopic(X)<=>big(X)).
+fof(macroscopical_big,axiom,macroscopical(X)<=>big(X)).
+fof(macro_big,axiom,macro(X)<=>big(X)).
+fof(man_sized_big,axiom,man_sized(X)<=>big(X)).
+fof(massive_big,axiom,massive(X)<=>big(X)).
+fof(monolithic_big,axiom,monolithic(X)<=>big(X)).
+fof(monumental_big,axiom,monumental(X)<=>big(X)).
+fof(medium_large_big,axiom,medium_large(X)<=>big(X)).
+fof(monstrous_big,axiom,monstrous(X)<=>big(X)).
+fof(mountainous_big,axiom,mountainous(X)<=>big(X)).
+fof(outsize_big,axiom,outsize(X)<=>big(X)).
+fof(outsized_big,axiom,outsized(X)<=>big(X)).
+fof(oversize_big,axiom,oversize(X)<=>big(X)).
+fof(oversized_big,axiom,oversized(X)<=>big(X)).
+fof(overlarge_big,axiom,overlarge(X)<=>big(X)).
+fof(too_large_big,axiom,too_large(X)<=>big(X)).
+fof(plumping_big,axiom,plumping(X)<=>big(X)).
+fof(queen_size_big,axiom,queen_size(X)<=>big(X)).
+fof(queen_sized_big,axiom,queen_sized(X)<=>big(X)).
+fof(rangy_big,axiom,rangy(X)<=>big(X)).
+fof(super_big,axiom,super(X)<=>big(X)).
+fof(titanic_big,axiom,titanic(X)<=>big(X)).
+fof(volumed_big,axiom,volumed(X)<=>big(X)).
+fof(voluminous_big,axiom,voluminous(X)<=>big(X)).
+fof(whacking_big,axiom,whacking(X)<=>big(X)).
+fof(wide_ranging_big,axiom,wide_ranging(X)<=>big(X)).
+
+%Time Stamp: 1387046463745
+%Human readable time: 2013/12/14 18:41:03 1387046463745
+%Word: big is a [POS: adjective] in sense number 13 and pronoun is false. The current meaning sense of big is: significant; "graduation was a big day in his life".
+fof(important_big,axiom,important(X)<=>big(X)).
+fof(of_import_big,axiom,of_import(X)<=>big(X)).
+fof(all_important_big,axiom,all_important(X)<=>big(X)).
+fof(crucial_big,axiom,crucial(X)<=>big(X)).
+fof(essential_big,axiom,essential(X)<=>big(X)).
+fof(of_the_essence_big,axiom,of_the_essence(X)<=>big(X)).
+fof(alpha_big,axiom,alpha(X)<=>big(X)).
+fof(beta_big,axiom,beta(X)<=>big(X)).
+fof(burning_big,axiom,burning(X)<=>big(X)).
+fof(cardinal_big,axiom,cardinal(X)<=>big(X)).
+fof(central_big,axiom,central(X)<=>big(X)).
+fof(fundamental_big,axiom,fundamental(X)<=>big(X)).
+fof(key_big,axiom,key(X)<=>big(X)).
+fof(primal_big,axiom,primal(X)<=>big(X)).
+fof(chief_big,axiom,chief(X)<=>big(X)).
+fof(main_big,axiom,main(X)<=>big(X)).
+fof(primary_big,axiom,primary(X)<=>big(X)).
+fof(principal_big,axiom,principal(X)<=>big(X)).
+fof(master_big,axiom,master(X)<=>big(X)).
+fof(consequential_big,axiom,consequential(X)<=>big(X)).
+fof(eventful_big,axiom,eventful(X)<=>big(X)).
+fof(copernican_big,axiom,copernican(X)<=>big(X)).
+fof(distinguished_big,axiom,distinguished(X)<=>big(X)).
+fof(grave_big,axiom,grave(X)<=>big(X)).
+fof(grievous_big,axiom,grievous(X)<=>big(X)).
+fof(heavy_big,axiom,heavy(X)<=>big(X)).
+fof(weighty_big,axiom,weighty(X)<=>big(X)).
+fof(outstanding_big,axiom,outstanding(X)<=>big(X)).
+fof(historic_big,axiom,historic(X)<=>big(X)).
+fof(in_chief_big,axiom,in_chief(X)<=>big(X)).
+fof(measurable_big,axiom,measurable(X)<=>big(X)).
+fof(most_valuable_big,axiom,most_valuable(X)<=>big(X)).
+fof(serious_big,axiom,serious(X)<=>big(X)).
+fof(strategic_big,axiom,strategic(X)<=>big(X)).
+
+%Time Stamp: 1387046464480
+%Human readable time: 2013/12/14 18:41:04 1387046464480
+%Word: big is a [POS: adjective] in sense number 13 and pronoun is false. The current meaning sense of big is: very intense; "a bad headache"; "in a big rage"; "had a big (or bad) shock"; "a bad earthquake"; "a bad storm".
+fof(bad,axiom,bad(X)).
+fof(bad_big,axiom,bad=>big).
+fof(bad_big,axiom,bad(X)<=>big(X)).
+fof(intense_big,axiom,intense(X)<=>big(X)).
+fof(aggravated_big,axiom,aggravated(X)<=>big(X)).
+fof(blood_and_guts_big,axiom,blood_and_guts(X)<=>big(X)).
+fof(brutal_big,axiom,brutal(X)<=>big(X)).
+fof(unrelenting_big,axiom,unrelenting(X)<=>big(X)).
+fof(cold_big,axiom,cold(X)<=>big(X)).
+fof(concentrated_big,axiom,concentrated(X)<=>big(X)).
+fof(consuming_big,axiom,consuming(X)<=>big(X)).
+fof(overwhelming_big,axiom,overwhelming(X)<=>big(X)).
+fof(exquisite_big,axiom,exquisite(X)<=>big(X)).
+fof(keen_big,axiom,keen(X)<=>big(X)).
+fof(extreme_big,axiom,extreme(X)<=>big(X)).
+fof(utmost_big,axiom,utmost(X)<=>big(X)).
+fof(uttermost_big,axiom,uttermost(X)<=>big(X)).
+fof(fierce_big,axiom,fierce(X)<=>big(X)).
+fof(tearing_big,axiom,tearing(X)<=>big(X)).
+fof(vehement_big,axiom,vehement(X)<=>big(X)).
+fof(violent_big,axiom,violent(X)<=>big(X)).
+fof(trigger_happy_big,axiom,trigger_happy(X)<=>big(X)).
+fof(intensified_big,axiom,intensified(X)<=>big(X)).
+fof(intensive_big,axiom,intensive(X)<=>big(X)).
+fof(profound_big,axiom,profound(X)<=>big(X)).
+fof(raging_big,axiom,raging(X)<=>big(X)).
+fof(screaming_big,axiom,screaming(X)<=>big(X)).
+fof(severe_big,axiom,severe(X)<=>big(X)).
+fof(terrible_big,axiom,terrible(X)<=>big(X)).
+fof(wicked_big,axiom,wicked(X)<=>big(X)).
+fof(smart_big,axiom,smart(X)<=>big(X)).
+fof(strong_big,axiom,strong(X)<=>big(X)).
+fof(terrific_big,axiom,terrific(X)<=>big(X)).
+fof(thick_big,axiom,thick(X)<=>big(X)).
+fof(unabated_big,axiom,unabated(X)<=>big(X)).
+fof(wild_big,axiom,wild(X)<=>big(X)).
+
+%Time Stamp: 1387046465407
+%Human readable time: 2013/12/14 18:41:05 1387046465407
+%Word: big is a [POS: adjective] in sense number 13 and pronoun is false. The current meaning sense of big is: loud and firm; "a big voice"; "big bold piano sounds".
+fof(loud_big,axiom,loud(X)<=>big(X)).
+fof(blaring_big,axiom,blaring(X)<=>big(X)).
+fof(blasting_big,axiom,blasting(X)<=>big(X)).
+fof(clarion_big,axiom,clarion(X)<=>big(X)).
+fof(deafening_big,axiom,deafening(X)<=>big(X)).
+fof(earsplitting_big,axiom,earsplitting(X)<=>big(X)).
+fof(thunderous_big,axiom,thunderous(X)<=>big(X)).
+fof(thundery_big,axiom,thundery(X)<=>big(X)).
+fof(earthshaking_big,axiom,earthshaking(X)<=>big(X)).
+fof(harsh_voiced_big,axiom,harsh_voiced(X)<=>big(X)).
+fof(loud_mouthed_big,axiom,loud_mouthed(X)<=>big(X)).
+fof(loud_voiced_big,axiom,loud_voiced(X)<=>big(X)).
+fof(shattering_big,axiom,shattering(X)<=>big(X)).
+fof(shouted_big,axiom,shouted(X)<=>big(X)).
+fof(yelled_big,axiom,yelled(X)<=>big(X)).
+fof(trumpet_like_big,axiom,trumpet_like(X)<=>big(X)).
+fof(vocal_big,axiom,vocal(X)<=>big(X)).
+
+%Time Stamp: 1387046466035
+%Human readable time: 2013/12/14 18:41:06 1387046466035
+%Word: big is a [POS: adjective] in sense number 13 and pronoun is false. The current meaning sense of big is: conspicuous in position or importance; "a big figure in the movement"; "big man on campus"; "he's very large in financial circles"; "a prominent citizen".
+fof(prominent,axiom,prominent(X)).
+fof(prominent_big,axiom,prominent=>big).
+fof(prominent_big,axiom,prominent(X)<=>big(X)).
+fof(conspicuous_big,axiom,conspicuous(X)<=>big(X)).
+fof(attention_getting_big,axiom,attention_getting(X)<=>big(X)).
+fof(eye_catching_big,axiom,eye_catching(X)<=>big(X)).
+fof(bold_big,axiom,bold(X)<=>big(X)).
+fof(crying_big,axiom,crying(X)<=>big(X)).
+fof(egregious_big,axiom,egregious(X)<=>big(X)).
+fof(flagrant_big,axiom,flagrant(X)<=>big(X)).
+fof(glaring_big,axiom,glaring(X)<=>big(X)).
+fof(gross_big,axiom,gross(X)<=>big(X)).
+fof(rank_big,axiom,rank(X)<=>big(X)).
+fof(featured_big,axiom,featured(X)<=>big(X)).
+fof(in_evidence_big,axiom,in_evidence(X)<=>big(X)).
+fof(marked_big,axiom,marked(X)<=>big(X)).
+fof(salient_big,axiom,salient(X)<=>big(X)).
+fof(spectacular_big,axiom,spectacular(X)<=>big(X)).
+fof(striking_big,axiom,striking(X)<=>big(X)).
+
+fof(big_trophy,conjecture,big(trophy)).

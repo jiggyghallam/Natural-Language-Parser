@@ -85,8 +85,50 @@ public class Parser {
 		return null;
 	}
 
+	/**
+	 * Creates a {@link Word} from a {@link Dependency} and a tagged sentence containing that word.
+	 * @param dependency
+	 * @param POSTaggedString
+	 * @param wordNet
+	 * @return
+	 */
 	public Word getWord(Dependency dependency, String POSTaggedString, WordNet wordNet) {
 		String wordStr = dependency.getNode_2_string();
+		String[] POSTaggedStringArr = POSTaggedString.split("\\s");
+		// System.out.println(POSTaggedString.length());
+		String tag = "";
+		for (String s : POSTaggedStringArr) {
+			if (s.contains(wordStr)) {
+				tag = s;
+				break;
+			}
+		}
+		tag = tag.split("\\W")[1];
+		try {
+			IndexWord iw = wordNet.getStringAsIndexWord(tenseModifier.changeTense(wordStr, Tense.PRESENT), getPOSfromTag(tag));
+			if (iw == null) {
+				System.err.println("A name has been found, replaced the name " + wordStr + " with human");
+				iw = wordNet.getStringAsIndexWord("human", POS.NOUN);
+				return new Word(iw, POS.NOUN,iw.getSenses().size());
+			}
+			
+			return new Word(iw, getPOSfromTag(tag),iw.getSenses().size());
+		} catch (JWNLException e) {
+			System.err.println("Exception thrown when creating a word in parser\n");
+			e.printStackTrace();
+			return new Word(wordStr, POS.NOUN,1);
+		}
+	}
+	
+	/**
+	 * Creates a {@link Word} from a String and a tagged sentence containing that word.
+	 * @param word
+	 * @param POSTaggedString
+	 * @param wordNet
+	 * @return
+	 */
+	public Word getWord(String word, String POSTaggedString, WordNet wordNet) {
+		String wordStr = word;
 		String[] POSTaggedStringArr = POSTaggedString.split("\\s");
 		// System.out.println(POSTaggedString.length());
 		String tag = "";

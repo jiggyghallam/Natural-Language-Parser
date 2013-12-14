@@ -158,6 +158,8 @@ public class Main {
 		sentenceStringArray
 				.add("The trophy doesn't fit into the brown suitcase because it's too small.");
 		sentenceStringArray
+				.add("The trophy doesn't fit into the brown suitcase because it's too big.");
+		sentenceStringArray
 				.add("I poured water from the bottle into the cup until it was full.");
 		sentenceStringArray
 				.add("The man couldn't lift his son because he was so weak.");
@@ -180,11 +182,16 @@ public class Main {
 		sentenceStringArray
 				.add("The sculpture rolled off the shelf because it wasn't anchored.");
 
+		
+		
 		ArrayList<String> questionStringArray = new ArrayList<String>();
 		questionStringArray.add("What is to small? small? big");
+		questionStringArray.add("What is to big? big? small");
 
+		
 		ArrayList<String> answerStringArray = new ArrayList<String>();
 		answerStringArray.add("The suitcase. suitcase. trophy");
+		answerStringArray.add("The suitcase. trophy. suitcase");
 
 		KnowledgeBaseCreator kb = new KnowledgeBaseCreator();
 
@@ -192,6 +199,11 @@ public class Main {
 
 		kb.processQuestion(questionStringArray.get(0),
 				answerStringArray.get(0),10,10, true);
+		
+		kb.processSentence(sentenceStringArray.get(1), 10, 10, true);
+
+		kb.processQuestion(questionStringArray.get(1),
+				answerStringArray.get(1),10,10, true);
 		
 		try {
 			kb.writeKnowledgeBaseToFile("wordInfo.tptp", false);

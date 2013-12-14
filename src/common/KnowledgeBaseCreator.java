@@ -37,6 +37,8 @@ public class KnowledgeBaseCreator {
 	private SentanceProcessor sp;
 	private Map<String, Integer> hashMap;
 	private StringBuilder stringBuilder;
+	private String[] conjecture = new String[4];
+	private String[] hypothesis = new String[4];
 
 	public KnowledgeBaseCreator() {
 		f = new Formaliser();
@@ -198,10 +200,9 @@ public class KnowledgeBaseCreator {
 					.toLowerCase();
 			String answerString = answer.split("\\.+")[1].trim().toLowerCase();
 
-			Word specialWord = new Word(wordNet.getStringAsIndexWord(
-					specialString, POS.NOUN), POS.NOUN, wordNet
-					.getStringAsIndexWord(specialString, POS.NOUN).getSenses()
-					.size());
+			String taggedSentence = p.getPOSTaggedSentence(sentence);
+			Word specialWord = p.getWord(specialString, taggedSentence, wordNet);
+
 			
 			if (!specialWord.isPronoun()) {
 				if (multipleSenses) {
